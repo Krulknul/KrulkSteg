@@ -1,3 +1,16 @@
+# KrulkSteg Steganographic image encoder
+#
+# KrulkSteg is is a python script that encodes text into PNG files
+# and decodes this text. The text is encoded into binary and stored
+# in the least significant bits of the individual color channels.
+# This allows text to be encoded into the image without anyone noticing.
+# The text is easy to recover with the decode function of this script.
+#
+# execute this file with option -h r --help to get started.
+#
+# https://github.com/Krulknul/KrulkSteg
+
+
 import argparse
 import re
 from textwrap import wrap
