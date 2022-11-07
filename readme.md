@@ -16,4 +16,5 @@ arguments:
 -  `-b AMOUNT ---- Amount of bits to use per channel for encoding or decoding.`
 -  `-r ----------- Print the raw repeating string decoded from the image, instead of the single string.`
 
+## How dis workie?
 https://youtu.be/TWEXCYQKyDc
