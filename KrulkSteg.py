@@ -72,7 +72,7 @@ if __name__ == '__main__':
                                 The 'decode' mode returns the string once''',
                         required=True)
     parser.add_argument('-p', '--path',
-                        help="Path to image. Defaults to 'image.png' in cwd")
+                        help="Path to image. Defaults to 'img.png' in cwd")
     parser.add_argument('-s', '--string',
                         help='''After this option, provide the string
                                 to be encoded into the image.''')
