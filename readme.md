@@ -5,7 +5,7 @@ This allows text to be encoded into the image without anyone noticing.
 The text is easy to recover with the decode function of this script.
 
 # Usage:
-### KrulkSteg [-h] -m {encode,decode} [-p PATH] [-s STRING] [-r]
+### python3 KrulkSteg.py [-h] -m {encode,decode} [-p PATH] [-s STRING] [-r]
 
 arguments:
 -  -h, --help            show this help message and exit
