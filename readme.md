@@ -13,4 +13,5 @@ arguments:
                         image as 'out.png' in cwd. The 'decode' mode returns the string once`
 -  `-p PATH ------ Path to image. Defaults to 'img.png' in cwd`
 -  `-s STRING ---- After this option, provide the string to be encoded into the image.`
+-  `-b AMOUNT ---- Amount of bits to use per channel for encoding or decoding.`
 -  `-r ----------- Print the raw repeating string decoded from the image, instead of the single string.`
