@@ -95,9 +95,11 @@ if __name__ == '__main__':
     img = img.convert('RGB')
 
     if args.mode == 'decode':
-        print('\nDecoded string:\n\n' + decode(img, args.raw))
+        print(decode(img, args.raw))
 
     if args.mode == 'encode':
         string = args.string
+        if len(string) * 8 > (img.height * img.width):
+            print('too big')
         encode(img, string)
         print(f"\n'{decode(img, args.raw)}' was encoded successfully")
