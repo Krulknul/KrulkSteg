@@ -40,7 +40,7 @@ def encode(img, string):
     img.save('out.png')
 
 
-def decode(img, extract=False):
+def decode(img, raw=False):
     bitstring = ''
     for y in range(1, img.height):
         for x in range(1, img.width):
@@ -51,7 +51,7 @@ def decode(img, extract=False):
         bitstring = bitstring[:-1]
     decoded = bin_to_string(bitstring)
 
-    if not extract:
+    if not raw:
         repeating = repetitions(decoded)
         return repeating if repeating else 'no'
     else:
