@@ -12,7 +12,7 @@ arguments:
 -   -m {encode,decode}, 
                         Use this option to select the mode. The 'encode' mode takes a string and encodes it into the image repeatingly. It saves the
                         image as 'out.png' in cwd. The 'decode' mode returns the string once
--   -p PATH, --path PATH  Path to image. Defaults to 'image.png' in cwd
+-   -p PATH, --path PATH  Path to image. Defaults to 'img.png' in cwd
 -   -s STRING, --string STRING
                         After this option, provide the string to be encoded into the image.
 -   -r, --raw             Print the raw repeating string decoded from the image, instead of the single string.
