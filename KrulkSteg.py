@@ -35,7 +35,7 @@ def repetitions(s):
     return matching.group(1) if matching else None
 
 
-def encode(img, string, bits=1):
+def encode(img, string, bits=1, path='out.png'):
     bitstring = string_to_bin(string)
     bitstring = wrap(bitstring, bits)
     while len(bitstring[-1]) < bits:
@@ -54,7 +54,14 @@ def encode(img, string, bits=1):
                 bit_index += 1
             new_pixel = tuple(new_values)
             img.putpixel((x, y), new_pixel)
-    img.save('out.png')
+    img.save(path_handle(path))
+
+
+def path_handle(path):
+    type = path.split('.')[-1]
+    name = path.split('.')[-2].split('/')[-1]
+    print('steg_' + name + type)
+    return 'steg_' + name + '.' + type
 
 
 def decode(img, bits=1, raw=False):
@@ -85,7 +92,7 @@ if __name__ == '__main__':
                         help='''Use this option to select the mode.
                                 The 'encode' mode takes a string and encodes
                                 it into the image repeatingly. It saves the
-                                image as 'out.png' in cwd.
+                                image as 'steg_filename.png' in cwd.
                                 The 'decode' mode returns the string once''',
                         required=True)
     parser.add_argument('-p', '--path',
@@ -106,7 +113,7 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if args.mode == 'encode' and args.string is None:
         print("""The 'encode' mode needs a string as message.
-                 Please use the -m option to provide a string.""")
+                 Please use the -s option to provide a string.""")
         exit()
     if args.path is None:
         args.path = 'img.png'
@@ -124,5 +131,5 @@ if __name__ == '__main__':
         string = args.string
         if len(string) * 8 > (img.height * img.width):
             print('too big')
-        encode(img, string, args.bits)
+        encode(img, string, args.bits, args.path)
         print(f"'{decode(img, args.bits, args.raw)}' was encoded successfully")
