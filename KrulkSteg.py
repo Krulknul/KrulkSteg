@@ -22,7 +22,7 @@ def repetitions(s):
     return matching.group(1) if matching else None
 
 
-def encode(img, bits, string):
+def encode(img, string, bits=1):
     bitstring = string_to_bin(string)
     bitstring = wrap(bitstring, bits)
     while len(bitstring[-1]) < bits:
@@ -44,7 +44,7 @@ def encode(img, bits, string):
     img.save('out.png')
 
 
-def decode(img, bits, raw=False):
+def decode(img, bits=1, raw=False):
     bitstring = ''
     for y in range(1, img.height):
         for x in range(1, img.width):
@@ -57,7 +57,7 @@ def decode(img, bits, raw=False):
 
     if not raw:
         repeating = repetitions(decoded)
-        return repeating if repeating else 'no'
+        return repeating if repeating else 'No repeating string found.'
     else:
         return decoded
 
@@ -111,5 +111,5 @@ if __name__ == '__main__':
         string = args.string
         if len(string) * 8 > (img.height * img.width):
             print('too big')
-        encode(img, args.bits, string)
+        encode(img, string, args.bits)
         print(f"'{decode(img, args.bits, args.raw)}' was encoded successfully")
