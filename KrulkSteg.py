@@ -6,7 +6,7 @@
 # This allows text to be encoded into the image without anyone noticing.
 # The text is easy to recover with the decode function of this script.
 #
-# execute this file with option -h or --help to get started.
+# Execute this file with option -h or --help to get started.
 #
 # https://github.com/Krulknul/KrulkSteg
 
