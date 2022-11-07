@@ -1,5 +1,6 @@
 import argparse
 import re
+from textwrap import wrap
 from PIL import Image
 from os import path
 
@@ -18,11 +19,14 @@ def bin_to_string(bitstring):
 def repetitions(s):
     regex = re.compile(r"(.+?)\1+")
     matching = regex.match(s)
-    return matching.group(1)
+    return matching.group(1) if matching else None
 
 
-def encode(img, string):
+def encode(img, bits, string):
     bitstring = string_to_bin(string)
+    bitstring = wrap(bitstring, bits)
+    while len(bitstring[-1]) < bits:
+        bitstring[-1] += '0'
     bit_index = 0
     for y in range(1, img.height):
         for x in range(1, img.width):
@@ -32,7 +36,7 @@ def encode(img, string):
                 if bit_index >= len(bitstring):
                     bit_index = 0
                 new_values.append('{0:08b}'.format(value))
-                changed_value = new_values[j][:-1] + bitstring[bit_index]
+                changed_value = new_values[j][:-bits] + bitstring[bit_index]
                 new_values[j] = int(changed_value, 2)
                 bit_index += 1
             new_pixel = tuple(new_values)
@@ -40,13 +44,13 @@ def encode(img, string):
     img.save('out.png')
 
 
-def decode(img, raw=False):
+def decode(img, bits, raw=False):
     bitstring = ''
     for y in range(1, img.height):
         for x in range(1, img.width):
             pixel = img.getpixel((x, y))
             for value in pixel:
-                bitstring += '{0:08b}'.format(value)[-1]
+                bitstring += '{0:08b}'.format(value)[-bits:]
     while (len(bitstring) % 8) != 0:
         bitstring = bitstring[:-1]
     decoded = bin_to_string(bitstring)
@@ -76,6 +80,12 @@ if __name__ == '__main__':
     parser.add_argument('-s', '--string',
                         help='''After this option, provide the string
                                 to be encoded into the image.''')
+    parser.add_argument('-b', '--bits',
+                        help='''Amount of bits per channel to use.
+                                Defaults to 1.''',
+                        default=1,
+                        type=int,
+                        choices=[1, 2, 4, 8])
     parser.add_argument('-r', '--raw',
                         action='store_true',
                         help='''Print the raw data decoded from the image,
@@ -95,11 +105,11 @@ if __name__ == '__main__':
     img = img.convert('RGB')
 
     if args.mode == 'decode':
-        print(decode(img, args.raw))
+        print(decode(img, args.bits, args.raw))
 
     if args.mode == 'encode':
         string = args.string
         if len(string) * 8 > (img.height * img.width):
             print('too big')
-        encode(img, string)
-        print(f"\n'{decode(img, args.raw)}' was encoded successfully")
+        encode(img, args.bits, string)
+        print(f"'{decode(img, args.bits, args.raw)}' was encoded successfully")
