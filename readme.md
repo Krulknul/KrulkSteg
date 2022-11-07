@@ -10,7 +10,7 @@ The text is easy to recover with the decode function of this script.
 arguments:
 -  `-h ----------- show this help message and exit`
 -  `-m MODE ------ Use this option to select the mode. The 'encode' mode takes a string and encodes it into the image repeatingly. It saves the
-                        image as 'out.png' in cwd. The 'decode' mode returns the string once`
+                        image as 'steg_filename.png' in cwd. The 'decode' mode returns the string once`
 -  `-p PATH ------ Path to image. Defaults to 'img.png' in cwd`
 -  `-s STRING ---- After this option, provide the string to be encoded into the image.`
 -  `-b AMOUNT ---- Amount of bits to use per channel for encoding or decoding.`
