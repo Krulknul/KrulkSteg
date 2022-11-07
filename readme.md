@@ -8,11 +8,9 @@ The text is easy to recover with the decode function of this script.
 ### python3 KrulkSteg.py [-h] -m {encode,decode} [-p PATH] [-s STRING] [-r]
 
 arguments:
--  -h, --help            show this help message and exit
--   -m {encode,decode}, 
-                        Use this option to select the mode. The 'encode' mode takes a string and encodes it into the image repeatingly. It saves the
-                        image as 'out.png' in cwd. The 'decode' mode returns the string once
--   -p PATH, --path PATH  Path to image. Defaults to 'img.png' in cwd
--   -s STRING, --string STRING
-                        After this option, provide the string to be encoded into the image.
--   -r, --raw             Print the raw repeating string decoded from the image, instead of the single string.
+-  `-h ----------- show this help message and exit`
+-  `-m MODE ------ Use this option to select the mode. The 'encode' mode takes a string and encodes it into the image repeatingly. It saves the
+                        image as 'out.png' in cwd. The 'decode' mode returns the string once`
+-  `-p PATH ------ Path to image. Defaults to 'img.png' in cwd`
+-  `-s STRING ---- After this option, provide the string to be encoded into the image.`
+-  `-r ----------- Print the raw repeating string decoded from the image, instead of the single string.`
