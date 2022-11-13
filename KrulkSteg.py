@@ -60,7 +60,6 @@ def encode(img, string, bits=1, path='out.png'):
 def path_handle(path):
     type = path.split('.')[-1]
     name = path.split('.')[-2].split('/')[-1]
-    print('steg_' + name + type)
     return 'steg_' + name + '.' + type
 
 
